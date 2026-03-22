@@ -1,0 +1,103 @@
+{
+  "common": {
+    "appName": "Anugraha Matrimony",
+    "tagline": "Find Your Perfect Match",
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK",
+    "close": "Close",
+    "viewAll": "View All",
+    "showMore": "Show More",
+    "showLess": "Show Less",
+    "continue": "Continue",
+    "confirm": "Confirm",
+    "tryAgain": "Try Again",
+    "goToHome": "Go to Home",
+    "noData": "No data available",
+    "error": "Something went wrong"
+  },
+  "nav": {
+    "login": "Login",
+    "register": "Register Free",
+    "successStories": "Success Stories",
+    "help": "Help",
+    "home": "Home",
+    "notifications": "Notifications",
+    "profile": "Profile"
+  },
+  "auth": {
+    "forgotPassword": "Forgot Password",
+    "resetPassword": "Reset Password",
+    "sendOtp": "Send OTP",
+    "verifyOtp": "Verify OTP",
+    "sendResetLink": "Send Reset Link",
+    "backToLogin": "Back to Login",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "updatePassword": "Update Password"
+  },
+  "dashboard": {
+    "profileViews": "Profile Views",
+    "interestsReceived": "Interests Received",
+    "interestsSent": "Interests Sent",
+    "matches": "Matches",
+    "shortlisted": "Shortlisted",
+    "quickActions": "Quick Actions"
+  },
+  "interest": {
+    "send": "Send Interest",
+    "sent": "Interest Sent",
+    "accept": "Accept",
+    "decline": "Decline",
+    "reply": "Reply",
+    "pending": "Pending",
+    "accepted": "Accepted",
+    "declined": "Declined",
+    "cancelled": "Cancelled",
+    "received": "Received",
+    "starred": "Starred",
+    "trash": "Trash"
+  },
+  "search": {
+    "partnerSearch": "Partner Search",
+    "keywordSearch": "Keyword Search",
+    "searchById": "Search by ID",
+    "savedSearch": "Saved Searches",
+    "discover": "Discover Profiles",
+    "noResults": "No profiles found matching your criteria"
+  },
+  "profile": {
+    "viewProfile": "View Profile",
+    "editProfile": "Edit Profile",
+    "settings": "Profile Settings",
+    "preview": "Preview Profile",
+    "completion": "Profile Completion",
+    "primaryInfo": "Primary Information",
+    "religiousInfo": "Religious Information",
+    "educationProfession": "Education & Profession",
+    "familyInfo": "Family Information",
+    "locationInfo": "Location Information",
+    "contactInfo": "Contact Information",
+    "partnerPreference": "Partner Preference"
+  },
+  "payments": {
+    "upgradePlan": "Upgrade Plan",
+    "currentPlan": "Current Plan",
+    "comparePlans": "Compare Plans",
+    "buyNow": "Buy Now",
+    "payNow": "Pay Now",
+    "addons": "Add-on Packages",
+    "paymentSuccess": "Payment Successful!",
+    "membershipActive": "Your membership is now active."
+  }
+}

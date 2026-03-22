@@ -1,0 +1,103 @@
+{
+  "common": {
+    "appName": "ಅನುಗ್ರಹ ಮ್ಯಾಟ್ರಿಮೋನಿ",
+    "tagline": "ನಿಮ್ಮ ಪರಿಪೂರ್ಣ ಜೋಡಿ ಹುಡುಕಿ",
+    "loading": "ಲೋಡ್ ಆಗುತ್ತಿದೆ...",
+    "save": "ಉಳಿಸಿ",
+    "cancel": "ರದ್ದುಮಾಡಿ",
+    "submit": "ಸಲ್ಲಿಸಿ",
+    "edit": "ಸಂಪಾದಿಸಿ",
+    "delete": "ಅಳಿಸಿ",
+    "search": "ಹುಡುಕಿ",
+    "back": "ಹಿಂದೆ",
+    "next": "ಮುಂದೆ",
+    "previous": "ಹಿಂದಿನ",
+    "yes": "ಹೌದು",
+    "no": "ಇಲ್ಲ",
+    "ok": "ಸರಿ",
+    "close": "ಮುಚ್ಚಿ",
+    "viewAll": "ಎಲ್ಲಾ ನೋಡಿ",
+    "showMore": "ಇನ್ನಷ್ಟು ತೋರಿಸಿ",
+    "showLess": "ಕಡಿಮೆ ತೋರಿಸಿ",
+    "continue": "ಮುಂದುವರಿಸಿ",
+    "confirm": "ದೃಢೀಕರಿಸಿ",
+    "tryAgain": "ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ",
+    "goToHome": "ಮುಖಪುಟಕ್ಕೆ ಹೋಗಿ",
+    "noData": "ಮಾಹಿತಿ ಲಭ್ಯವಿಲ್ಲ",
+    "error": "ಏನೋ ತಪ್ಪಾಗಿದೆ"
+  },
+  "nav": {
+    "login": "ಲಾಗಿನ್",
+    "register": "ಉಚಿತ ನೋಂದಣಿ",
+    "successStories": "ಯಶೋಗಾಥೆಗಳು",
+    "help": "ಸಹಾಯ",
+    "home": "ಮುಖಪುಟ",
+    "notifications": "ಅಧಿಸೂಚನೆಗಳು",
+    "profile": "ಪ್ರೊಫೈಲ್"
+  },
+  "auth": {
+    "forgotPassword": "ಪಾಸ್‌ವರ್ಡ್ ಮರೆತಿದ್ದೀರಾ",
+    "resetPassword": "ಪಾಸ್‌ವರ್ಡ್ ಮರುಹೊಂದಿಸಿ",
+    "sendOtp": "OTP ಕಳುಹಿಸಿ",
+    "verifyOtp": "OTP ಪರಿಶೀಲಿಸಿ",
+    "sendResetLink": "ಮರುಹೊಂದಿಸುವ ಲಿಂಕ್ ಕಳುಹಿಸಿ",
+    "backToLogin": "ಲಾಗಿನ್‌ಗೆ ಹಿಂತಿರುಗಿ",
+    "newPassword": "ಹೊಸ ಪಾಸ್‌ವರ್ಡ್",
+    "confirmPassword": "ಪಾಸ್‌ವರ್ಡ್ ದೃಢೀಕರಿಸಿ",
+    "updatePassword": "ಪಾಸ್‌ವರ್ಡ್ ನವೀಕರಿಸಿ"
+  },
+  "dashboard": {
+    "profileViews": "ಪ್ರೊಫೈಲ್ ವೀಕ್ಷಣೆಗಳು",
+    "interestsReceived": "ಸ್ವೀಕರಿಸಿದ ಆಸಕ್ತಿಗಳು",
+    "interestsSent": "ಕಳುಹಿಸಿದ ಆಸಕ್ತಿಗಳು",
+    "matches": "ಹೊಂದಾಣಿಕೆಗಳು",
+    "shortlisted": "ಶಾರ್ಟ್‌ಲಿಸ್ಟ್",
+    "quickActions": "ತ್ವರಿತ ಕ್ರಿಯೆಗಳು"
+  },
+  "interest": {
+    "send": "ಆಸಕ್ತಿ ಕಳುಹಿಸಿ",
+    "sent": "ಆಸಕ್ತಿ ಕಳುಹಿಸಲಾಗಿದೆ",
+    "accept": "ಸ್ವೀಕರಿಸಿ",
+    "decline": "ನಿರಾಕರಿಸಿ",
+    "reply": "ಉತ್ತರಿಸಿ",
+    "pending": "ಬಾಕಿ",
+    "accepted": "ಸ್ವೀಕರಿಸಲಾಗಿದೆ",
+    "declined": "ನಿರಾಕರಿಸಲಾಗಿದೆ",
+    "cancelled": "ರದ್ದುಮಾಡಲಾಗಿದೆ",
+    "received": "ಸ್ವೀಕರಿಸಿದ",
+    "starred": "ನಕ್ಷತ್ರ ಗುರುತಿಸಿದ",
+    "trash": "ಅನುಪಯುಕ್ತ"
+  },
+  "search": {
+    "partnerSearch": "ಸಂಗಾತಿ ಹುಡುಕಾಟ",
+    "keywordSearch": "ಕೀವರ್ಡ್ ಹುಡುಕಾಟ",
+    "searchById": "ID ಮೂಲಕ ಹುಡುಕಿ",
+    "savedSearch": "ಉಳಿಸಿದ ಹುಡುಕಾಟಗಳು",
+    "discover": "ಪ್ರೊಫೈಲ್‌ಗಳನ್ನು ಅನ್ವೇಷಿಸಿ",
+    "noResults": "ನಿಮ್ಮ ಮಾನದಂಡಕ್ಕೆ ಹೊಂದುವ ಪ್ರೊಫೈಲ್‌ಗಳು ಕಂಡುಬಂದಿಲ್ಲ"
+  },
+  "profile": {
+    "viewProfile": "ಪ್ರೊಫೈಲ್ ನೋಡಿ",
+    "editProfile": "ಪ್ರೊಫೈಲ್ ಸಂಪಾದಿಸಿ",
+    "settings": "ಪ್ರೊಫೈಲ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು",
+    "preview": "ಪ್ರೊಫೈಲ್ ಪೂರ್ವವೀಕ್ಷಣೆ",
+    "completion": "ಪ್ರೊಫೈಲ್ ಪೂರ್ಣಗೊಳಿಸುವಿಕೆ",
+    "primaryInfo": "ಪ್ರಾಥಮಿಕ ಮಾಹಿತಿ",
+    "religiousInfo": "ಧಾರ್ಮಿಕ ಮಾಹಿತಿ",
+    "educationProfession": "ಶಿಕ್ಷಣ ಮತ್ತು ವೃತ್ತಿ",
+    "familyInfo": "ಕುಟುಂಬ ಮಾಹಿತಿ",
+    "locationInfo": "ಸ್ಥಳ ಮಾಹಿತಿ",
+    "contactInfo": "ಸಂಪರ್ಕ ಮಾಹಿತಿ",
+    "partnerPreference": "ಸಂಗಾತಿ ಆದ್ಯತೆ"
+  },
+  "payments": {
+    "upgradePlan": "ಯೋಜನೆ ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಿ",
+    "currentPlan": "ಪ್ರಸ್ತುತ ಯೋಜನೆ",
+    "comparePlans": "ಯೋಜನೆಗಳನ್ನು ಹೋಲಿಸಿ",
+    "buyNow": "ಈಗ ಖರೀದಿಸಿ",
+    "payNow": "ಈಗ ಪಾವತಿಸಿ",
+    "addons": "ಆಡ್-ಆನ್ ಪ್ಯಾಕೇಜ್‌ಗಳು",
+    "paymentSuccess": "ಪಾವತಿ ಯಶಸ್ವಿ!",
+    "membershipActive": "ನಿಮ್ಮ ಸದಸ್ಯತ್ವ ಈಗ ಸಕ್ರಿಯವಾಗಿದೆ."
+  }
+}
