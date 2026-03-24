@@ -122,7 +122,7 @@ export function PublicFooter() {
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-sm text-white/60">
             <span>Call Us</span>
-            <span>Toll Free</span>
+            <span>WhatsApp</span>
             <span>Get a Call Back</span>
             <span>Chat Support</span>
           </div>
