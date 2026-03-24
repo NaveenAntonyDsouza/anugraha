@@ -24,7 +24,7 @@ const QUICK_LINKS = [
     icon: MessageCircle,
     title: "Contact Support",
     description: "Chat with our support team",
-    href: "mailto:support@anugrahamatrimony.com",
+    href: "mailto:info@anugrahamatrimony.com",
   },
 ];
 
