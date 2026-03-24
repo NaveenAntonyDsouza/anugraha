@@ -163,14 +163,21 @@ export default function HelpPage() {
                 <Phone className="h-5 w-5 text-primary" />
               </div>
               <p className="text-sm font-medium">Call Us</p>
-              <p className="text-sm text-muted-foreground">+91 484 4080333</p>
+              <p className="text-sm text-muted-foreground">+91 94816 18143</p>
             </div>
             <div className="flex flex-col items-center gap-2">
               <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
                 <PhoneCall className="h-5 w-5 text-primary" />
               </div>
-              <p className="text-sm font-medium">Toll Free</p>
-              <p className="text-sm text-muted-foreground">1800-103-4080</p>
+              <p className="text-sm font-medium">WhatsApp</p>
+              <a
+                href="https://wa.me/919481618143"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-muted-foreground hover:text-primary"
+                >
+                +91 94816 18143
+              </a>
             </div>
             <div className="flex flex-col items-center gap-2">
               <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
@@ -178,7 +185,7 @@ export default function HelpPage() {
               </div>
               <p className="text-sm font-medium">Email</p>
               <p className="text-sm text-muted-foreground">
-                support@anugrahamatrimony.com
+                info@anugrahamatrimony.com
               </p>
             </div>
           </div>
