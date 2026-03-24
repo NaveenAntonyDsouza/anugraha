@@ -85,9 +85,9 @@ To exercise these rights, contact us at the details provided below.`,
     title: "7. Contact Us",
     content: `If you have questions about this Privacy Policy or your data, please contact us:
 
-• Email: support@anugrahamatrimony.com
-• Phone: +91 484 4080333
-• Toll Free: 1800-103-4080
+• Email: info@anugrahamatrimony.com
+• Phone: +91 94816 18143
+• WhatsApp: +91 94816 18143
 • Address: Anugraha Matrimony, Bengaluru, Karnataka, India
 
 This Privacy Policy was last updated on March 2026. We may update this policy from time to time and will notify you of significant changes.`,
