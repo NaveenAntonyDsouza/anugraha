@@ -29,7 +29,7 @@ export default function HighlightedProfilesPage() {
       .select("user_id")
       .eq("is_active", true);
 
-    const premiumUserIds = (memberships ?? []).map((m) => m.user_id);
+    const premiumUserIds = (memberships ?? []).map((m: any) => m.user_id);
     if (premiumUserIds.length === 0) {
       setProfiles([]);
       setLoading(false);
@@ -47,7 +47,7 @@ export default function HighlightedProfilesPage() {
       .order("updated_at", { ascending: false })
       .limit(40);
 
-    const mapped: ProfileCardData[] = (data ?? []).map((p) => ({
+    const mapped: ProfileCardData[] = (data ?? []).map((p: any) => ({
       id: p.id,
       anugraha_id: p.anugraha_id,
       full_name: p.full_name,
@@ -64,8 +64,8 @@ export default function HighlightedProfilesPage() {
         .eq("photo_type", "profile")
         .eq("is_visible", true);
       if (photos) {
-        const photoMap = new Map(photos.map((p) => [p.profile_id, p.photo_url]));
-        mapped.forEach((p) => { p.photo_url = photoMap.get(p.id) ?? null; });
+        const photoMap = new Map(photos.map((p: any) => [p.profile_id, p.photo_url]));
+        mapped.forEach((p: any) => { p.photo_url = photoMap.get(p.id) ?? null; });
       }
     }
 

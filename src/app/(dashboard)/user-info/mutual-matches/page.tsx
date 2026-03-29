@@ -30,9 +30,9 @@ export default function MutualMatchesPage() {
         .eq("is_deleted_by_receiver", false),
     ]);
 
-    const sentIds = (sentRes.data ?? []).map((r) => r.receiver_id);
-    const receivedIds = (receivedRes.data ?? []).map((r) => r.sender_id);
-    const mutualIds = sentIds.filter((id) => receivedIds.includes(id));
+    const sentIds = (sentRes.data ?? []).map((r: any) => r.receiver_id);
+    const receivedIds = (receivedRes.data ?? []).map((r: any) => r.sender_id);
+    const mutualIds = sentIds.filter((id: any) => receivedIds.includes(id));
 
     if (mutualIds.length > 0) {
       const { data } = await supabase
@@ -40,7 +40,7 @@ export default function MutualMatchesPage() {
         .select("id, anugraha_id, full_name, age")
         .in("id", mutualIds);
 
-      const mapped: ProfileCardData[] = (data ?? []).map((p) => ({
+      const mapped: ProfileCardData[] = (data ?? []).map((p: any) => ({
         id: p.id,
         anugraha_id: p.anugraha_id,
         full_name: p.full_name,
@@ -49,7 +49,7 @@ export default function MutualMatchesPage() {
       }));
 
       if (mapped.length > 0) {
-        const ids = mapped.map((p) => p.id);
+        const ids = mapped.map((p: any) => p.id);
         const { data: photos } = await supabase
           .from("profile_photos")
           .select("profile_id, photo_url")
@@ -57,8 +57,8 @@ export default function MutualMatchesPage() {
           .eq("photo_type", "profile")
           .eq("is_visible", true);
         if (photos) {
-          const photoMap = new Map(photos.map((p) => [p.profile_id, p.photo_url]));
-          mapped.forEach((p) => { p.photo_url = photoMap.get(p.id) ?? null; });
+          const photoMap = new Map(photos.map((p: any) => [p.profile_id, p.photo_url]));
+          mapped.forEach((p: any) => { p.photo_url = photoMap.get(p.id) ?? null; });
         }
       }
 

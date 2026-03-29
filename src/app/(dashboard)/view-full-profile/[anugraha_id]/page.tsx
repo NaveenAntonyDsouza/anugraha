@@ -254,15 +254,15 @@ export default function ViewFullProfilePage() {
       .limit(3);
 
     if (similar && similar.length > 0) {
-      const ids = similar.map((s) => s.id);
+      const ids = similar.map((s: any) => s.id);
       const { data: simPhotos } = await supabase
         .from("profile_photos")
         .select("profile_id, photo_url")
         .in("profile_id", ids)
         .eq("photo_type", "profile")
         .eq("is_visible", true);
-      const photoMap = new Map((simPhotos ?? []).map((p) => [p.profile_id, p.photo_url]));
-      setSimilarProfiles(similar.map((s) => ({
+      const photoMap = new Map((simPhotos ?? []).map((p: any) => [p.profile_id, p.photo_url]));
+      setSimilarProfiles(similar.map((s: any) => ({
         ...s,
         photo_url: photoMap.get(s.id) ?? null,
       })));

@@ -85,7 +85,7 @@ export function NotificationsPanel({ isOpen, onClose }: NotificationsPanelProps)
       .limit(50);
     if (data) {
       setNotifications(data as Notification[]);
-      setCount(data.filter((n) => !n.is_read).length);
+      setCount(data.filter((n: any) => !n.is_read).length);
     }
     setLoading(false);
   }, [user, supabase, setCount]);

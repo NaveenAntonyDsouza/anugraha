@@ -71,9 +71,9 @@ export default function ManagePhotosPage() {
         ]);
 
         if (photosRes.data) {
-          setProfilePhotos(photosRes.data.filter((p) => p.photo_type === "profile"));
-          setAlbumPhotos(photosRes.data.filter((p) => p.photo_type === "album"));
-          setFamilyPhotos(photosRes.data.filter((p) => p.photo_type === "family"));
+          setProfilePhotos(photosRes.data.filter((p: any) => p.photo_type === "profile"));
+          setAlbumPhotos(photosRes.data.filter((p: any) => p.photo_type === "album"));
+          setFamilyPhotos(photosRes.data.filter((p: any) => p.photo_type === "family"));
         }
         if (archivedRes.data) setArchivedPhotos(archivedRes.data);
         if (privacyRes.data) {

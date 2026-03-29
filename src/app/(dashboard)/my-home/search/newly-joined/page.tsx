@@ -38,7 +38,7 @@ export default function NewlyJoinedPage() {
       .order("created_at", { ascending: sort === "oldest" })
       .range(from, to);
 
-    const mapped: ProfileCardData[] = (data ?? []).map((p) => ({
+    const mapped: ProfileCardData[] = (data ?? []).map((p: any) => ({
       id: p.id,
       anugraha_id: p.anugraha_id,
       full_name: p.full_name,
@@ -47,7 +47,7 @@ export default function NewlyJoinedPage() {
     }));
 
     if (mapped.length > 0) {
-      const ids = mapped.map((p) => p.id);
+      const ids = mapped.map((p: any) => p.id);
       const { data: photos } = await supabase
         .from("profile_photos")
         .select("profile_id, photo_url")
@@ -55,8 +55,8 @@ export default function NewlyJoinedPage() {
         .eq("photo_type", "profile")
         .eq("is_visible", true);
       if (photos) {
-        const photoMap = new Map(photos.map((p) => [p.profile_id, p.photo_url]));
-        mapped.forEach((p) => { p.photo_url = photoMap.get(p.id) ?? null; });
+        const photoMap = new Map(photos.map((p: any) => [p.profile_id, p.photo_url]));
+        mapped.forEach((p: any) => { p.photo_url = photoMap.get(p.id) ?? null; });
       }
     }
 

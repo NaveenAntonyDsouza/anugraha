@@ -115,8 +115,10 @@ function ListsContent() {
         .eq("photo_type", "profile")
         .eq("is_visible", true);
 
-      const profileMap = new Map((profiles ?? []).map((p) => [p.id, p]));
-      const photoMap = new Map((photos ?? []).map((p) => [p.profile_id, p.photo_url]));
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const profileMap = new Map((profiles ?? []).map((p: any) => [p.id, p]));
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const photoMap = new Map((photos ?? []).map((p: any) => [p.profile_id, p.photo_url]));
 
       const mapped: ListProfile[] = data.map((d: Record<string, unknown>) => {
         const tid = d[targetCol] as string;

@@ -26,7 +26,7 @@ export default function ResetPasswordPage() {
 
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      (event) => {
+      (event: string) => {
         if (event === "PASSWORD_RECOVERY") {
           setShowForm(true);
           setChecking(false);

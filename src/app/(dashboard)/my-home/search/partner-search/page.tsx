@@ -74,10 +74,10 @@ function PartnerSearchContent() {
         supabase.from("shortlists").select("shortlisted_profile_id").eq("profile_id", profile!.id),
       ]);
       setInteractionData({
-        viewedIds: (views.data ?? []).map((v) => v.viewed_profile_id),
+        viewedIds: (views.data ?? []).map((v: any) => v.viewed_profile_id),
         contactedIds: [],
-        sentInterestIds: (interests.data ?? []).map((v) => v.receiver_id),
-        shortlistedIds: (shortlists.data ?? []).map((v) => v.shortlisted_profile_id),
+        sentInterestIds: (interests.data ?? []).map((v: any) => v.receiver_id),
+        shortlistedIds: (shortlists.data ?? []).map((v: any) => v.shortlisted_profile_id),
       });
     }
     loadInteractions();
@@ -118,8 +118,8 @@ function PartnerSearchContent() {
         .in("user_id", userIds);
 
       if (privacyData) {
-        const psMap = new Map(privacyData.map((ps) => [ps.user_id, ps]));
-        profiles = profiles.map((p) => ({
+        const psMap = new Map(privacyData.map((ps: any) => [ps.user_id, ps]));
+        profiles = profiles.map((p: any) => ({
           ...p,
           privacy_settings: psMap.get(p.user_id) ?? null,
         }));
@@ -133,8 +133,8 @@ function PartnerSearchContent() {
         .eq("is_active", true);
 
       if (memberships) {
-        const premiumSet = new Set(memberships.map((m) => m.user_id));
-        profiles = profiles.map((p) => ({
+        const premiumSet = new Set(memberships.map((m: any) => m.user_id));
+        profiles = profiles.map((p: any) => ({
           ...p,
           is_premium: premiumSet.has(p.user_id),
         }));

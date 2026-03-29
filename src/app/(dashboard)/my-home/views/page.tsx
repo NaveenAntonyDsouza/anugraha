@@ -92,7 +92,7 @@ function ViewsContent() {
         .eq("viewed_profile_id", profile.id)
         .order("last_viewed_at", { ascending: false })
         .range(from, to);
-      profileIds = data?.map((v) => v.viewer_id) ?? [];
+      profileIds = data?.map((v: any) => v.viewer_id) ?? [];
       setHasMore((data?.length ?? 0) === perPage);
     } else if (activeTab === "profiles-viewed-by-me") {
       const { data } = await supabase
@@ -101,7 +101,7 @@ function ViewsContent() {
         .eq("viewer_id", profile.id)
         .order("last_viewed_at", { ascending: false })
         .range(from, to);
-      profileIds = data?.map((v) => v.viewed_profile_id) ?? [];
+      profileIds = data?.map((v: any) => v.viewed_profile_id) ?? [];
       setHasMore((data?.length ?? 0) === perPage);
     }
 
@@ -111,7 +111,7 @@ function ViewsContent() {
         .select("id, anugraha_id, full_name, age")
         .in("id", profileIds);
 
-      const mapped: ProfileCardData[] = (profilesData ?? []).map((p) => ({
+      const mapped: ProfileCardData[] = (profilesData ?? []).map((p: any) => ({
         id: p.id,
         anugraha_id: p.anugraha_id,
         full_name: p.full_name,
@@ -127,8 +127,8 @@ function ViewsContent() {
         .eq("is_visible", true);
 
       if (photos) {
-        const photoMap = new Map(photos.map((p) => [p.profile_id, p.photo_url]));
-        mapped.forEach((p) => {
+        const photoMap = new Map(photos.map((p: any) => [p.profile_id, p.photo_url]));
+        mapped.forEach((p: any) => {
           p.photo_url = photoMap.get(p.id) ?? null;
         });
       }

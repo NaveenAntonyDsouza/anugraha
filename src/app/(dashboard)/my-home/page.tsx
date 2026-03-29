@@ -80,7 +80,7 @@ export default function MyHomePage() {
 
     // For views, fetch the viewer profiles
     if (viewsRes.data && viewsRes.data.length > 0) {
-      const viewerIds = viewsRes.data.map((v) => v.viewer_id);
+      const viewerIds = viewsRes.data.map((v: any) => v.viewer_id);
       const { data: viewers } = await supabase
         .from("profiles")
         .select("id, anugraha_id, full_name, age")
@@ -105,9 +105,9 @@ export default function MyHomePage() {
     ]);
 
     if (sentRes.data && receivedRes.data) {
-      const sentIds = sentRes.data.map((r) => r.receiver_id);
-      const receivedIds = receivedRes.data.map((r) => r.sender_id);
-      const mutualIds = sentIds.filter((id) => receivedIds.includes(id));
+      const sentIds = sentRes.data.map((r: any) => r.receiver_id);
+      const receivedIds = receivedRes.data.map((r: any) => r.sender_id);
+      const mutualIds = sentIds.filter((id: any) => receivedIds.includes(id));
 
       if (mutualIds.length > 0) {
         const { data: mutualProfiles } = await supabase
@@ -122,8 +122,8 @@ export default function MyHomePage() {
 
     // Load profile photos for all card profiles
     const allProfileIds = [
-      ...(matchesRes.data ?? []).map((p) => p.id),
-      ...(joinedRes.data ?? []).map((p) => p.id),
+      ...(matchesRes.data ?? []).map((p: any) => p.id),
+      ...(joinedRes.data ?? []).map((p: any) => p.id),
     ];
     if (allProfileIds.length > 0) {
       const { data: photos } = await supabase
@@ -133,12 +133,12 @@ export default function MyHomePage() {
         .eq("photo_type", "profile")
         .eq("is_visible", true);
       if (photos) {
-        const photoMap = new Map(photos.map((p) => [p.profile_id, p.photo_url]));
-        setNewMatches((prev) =>
-          prev.map((p) => ({ ...p, photo_url: photoMap.get(p.id) ?? null }))
+        const photoMap = new Map(photos.map((p: any) => [p.profile_id, p.photo_url]));
+        setNewMatches((prev: any) =>
+          prev.map((p: any) => ({ ...p, photo_url: photoMap.get(p.id) ?? null }))
         );
-        setNewlyJoined((prev) =>
-          prev.map((p) => ({ ...p, photo_url: photoMap.get(p.id) ?? null }))
+        setNewlyJoined((prev: any) =>
+          prev.map((p: any) => ({ ...p, photo_url: photoMap.get(p.id) ?? null }))
         );
       }
     }
