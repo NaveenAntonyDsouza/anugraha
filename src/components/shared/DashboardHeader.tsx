@@ -25,7 +25,7 @@ const NAV_ITEMS = [
       { label: "My Home", href: "/my-home" },
       { label: "View & Edit My Profile", href: "/my-home/view-and-edit/primary-info" },
       { label: "Submit ID Proof", href: "/submit-id-proof" },
-      { label: "Manage Photo", href: "/my-home/manage-photos" },
+      { label: "Manage Photo", href: "/my-home/view-and-edit/manage-photos" },
       { label: "Profile Settings", href: "/my-home/profile-settings" },
     ],
   },
