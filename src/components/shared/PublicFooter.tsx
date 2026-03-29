@@ -120,11 +120,16 @@ export function PublicFooter() {
       {/* Contact bar */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <div className="flex flex-wrap justify-center gap-4 sm:gap-8 text-sm text-white/60">
-            <span>Call Us</span>
-            <span>WhatsApp</span>
-            <span>Get a Call Back</span>
-            <span>Chat Support</span>
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-10 text-sm text-white/60">
+            <a href="tel:+919481618143" className="hover:text-white transition-colors">
+              <span className="text-white/40 mr-1">Call Us:</span>+91 94816 18143
+            </a>
+            <a href="https://wa.me/919481618143" className="hover:text-white transition-colors">
+              <span className="text-white/40 mr-1">WhatsApp:</span>+91 94816 18143
+            </a>
+            <a href="mailto:info@anugrahamatrimony.com" className="hover:text-white transition-colors">
+              <span className="text-white/40 mr-1">Email:</span>info@anugrahamatrimony.com
+            </a>
           </div>
         </div>
       </div>
