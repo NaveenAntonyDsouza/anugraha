@@ -38,8 +38,13 @@ export default function ManagePhotosPage() {
 
   const [activeTab, setActiveTab] = useState<"photos" | "archived">("photos");
 
+  const authLoading = useAuthStore((s) => s.loading);
+
   const loadPhotos = useCallback(async () => {
-    if (!profile) return;
+    if (!profile) {
+      if (!authLoading) setLoading(false);
+      return;
+    }
     setProfileId(profile.id);
 
     const [photosRes, archivedRes, privacyRes] = await Promise.all([
@@ -74,7 +79,7 @@ export default function ManagePhotosPage() {
       setShowFamilyPhotos(privacyRes.data.show_family_photos ?? true);
     }
     setLoading(false);
-  }, [profile, supabase]);
+  }, [profile, authLoading, supabase]);
 
   useEffect(() => {
     loadPhotos();

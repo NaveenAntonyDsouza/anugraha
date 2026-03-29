@@ -17,12 +17,13 @@ interface IdProof {
 export default function IdProofViewPage() {
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
+  const authLoading = useAuthStore((s) => s.loading);
   const [loading, setLoading] = useState(true);
   const [idProof, setIdProof] = useState<IdProof | null>(null);
 
   useEffect(() => {
     async function load() {
-      if (!profile) return;
+      if (!profile) { if (!authLoading) setLoading(false); return; }
       const { data } = await supabase
         .from("id_proofs")
         .select("*")
@@ -34,7 +35,7 @@ export default function IdProofViewPage() {
       setLoading(false);
     }
     load();
-  }, [profile, supabase]);
+  }, [profile, authLoading, supabase]);
 
   if (loading) {
     return (

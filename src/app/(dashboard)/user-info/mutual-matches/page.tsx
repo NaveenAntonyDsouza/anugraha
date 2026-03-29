@@ -9,11 +9,12 @@ import { ProfileCard, type ProfileCardData } from "@/components/dashboard/profil
 export default function MutualMatchesPage() {
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
+  const authLoading = useAuthStore((s) => s.loading);
   const [profiles, setProfiles] = useState<ProfileCardData[]>([]);
   const [loading, setLoading] = useState(true);
 
   const load = useCallback(async () => {
-    if (!profile) return;
+    if (!profile) { if (!authLoading) setLoading(false); return; }
     setLoading(true);
 
     const [sentRes, receivedRes] = await Promise.all([
@@ -65,7 +66,7 @@ export default function MutualMatchesPage() {
     }
 
     setLoading(false);
-  }, [profile, supabase]);
+  }, [profile, authLoading, supabase]);
 
   useEffect(() => { load(); }, [load]);
 

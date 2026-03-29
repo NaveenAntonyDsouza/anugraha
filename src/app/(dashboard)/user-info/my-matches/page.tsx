@@ -9,13 +9,14 @@ import { ProfileCard, type ProfileCardData } from "@/components/dashboard/profil
 export default function MyMatchesPage() {
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
+  const authLoading = useAuthStore((s) => s.loading);
   const [profiles, setProfiles] = useState<ProfileCardData[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(false);
 
   const load = useCallback(async () => {
-    if (!profile) return;
+    if (!profile) { if (!authLoading) setLoading(false); return; }
     setLoading(true);
 
     const oppositeGender = profile.gender === "Male" ? "Female" : "Male";
@@ -57,7 +58,7 @@ export default function MyMatchesPage() {
     setHasMore((data?.length ?? 0) === perPage);
     setProfiles((prev) => (page === 1 ? mapped : [...prev, ...mapped]));
     setLoading(false);
-  }, [profile, page, supabase]);
+  }, [profile, authLoading, page, supabase]);
 
   useEffect(() => { load(); }, [load]);
 

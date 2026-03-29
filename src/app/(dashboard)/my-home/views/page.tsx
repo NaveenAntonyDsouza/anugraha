@@ -35,6 +35,7 @@ function ViewsContent() {
   const router = useRouter();
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
+  const authLoading = useAuthStore((s) => s.loading);
   const user = useAuthStore((s) => s.user);
 
   const activeTab = (searchParams.get("tab") as ViewTab) || "profiles-viewed-by-others";
@@ -50,7 +51,7 @@ function ViewsContent() {
   const [hasMore, setHasMore] = useState(false);
 
   const loadCounts = useCallback(async () => {
-    if (!profile || !user) return;
+    if (!profile || !user) { if (!authLoading) setLoading(false); return; }
     const [viewedByOthers, viewedByMe, membership] = await Promise.all([
       supabase
         .from("profile_views")
@@ -73,10 +74,10 @@ function ViewsContent() {
       "contacts-viewed-by-others": membership.data?.contacts_viewed ?? 0,
       "contacts-viewed-by-me": 0,
     });
-  }, [profile, user, supabase]);
+  }, [profile, authLoading, user, supabase]);
 
   const loadProfiles = useCallback(async () => {
-    if (!profile) return;
+    if (!profile) { if (!authLoading) setLoading(false); return; }
     setLoading(true);
     const perPage = 20;
     const from = (page - 1) * perPage;
@@ -138,7 +139,7 @@ function ViewsContent() {
       setHasMore(false);
     }
     setLoading(false);
-  }, [profile, activeTab, page, supabase]);
+  }, [profile, authLoading, activeTab, page, supabase]);
 
   useEffect(() => { loadCounts(); }, [loadCounts]);
   useEffect(() => { setPage(1); setProfiles([]); }, [activeTab]);

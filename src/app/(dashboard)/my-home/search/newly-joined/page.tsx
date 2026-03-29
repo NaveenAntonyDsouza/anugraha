@@ -9,6 +9,7 @@ import { ProfileCard, type ProfileCardData } from "@/components/dashboard/profil
 export default function NewlyJoinedPage() {
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
+  const authLoading = useAuthStore((s) => s.loading);
   const [profiles, setProfiles] = useState<ProfileCardData[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -16,7 +17,7 @@ export default function NewlyJoinedPage() {
   const [sort, setSort] = useState<"newest" | "oldest">("newest");
 
   const load = useCallback(async () => {
-    if (!profile) return;
+    if (!profile) { if (!authLoading) setLoading(false); return; }
     setLoading(true);
 
     const oppositeGender = profile.gender === "Male" ? "Female" : "Male";
@@ -62,7 +63,7 @@ export default function NewlyJoinedPage() {
     setHasMore((data?.length ?? 0) === perPage);
     setProfiles((prev) => (page === 1 ? mapped : [...prev, ...mapped]));
     setLoading(false);
-  }, [profile, page, sort, supabase]);
+  }, [profile, authLoading, page, sort, supabase]);
 
   useEffect(() => { setPage(1); setProfiles([]); }, [sort]);
   useEffect(() => { load(); }, [load]);

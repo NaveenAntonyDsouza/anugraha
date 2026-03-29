@@ -22,6 +22,7 @@ export default function IdProofEditPage() {
   const router = useRouter();
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
+  const authLoading = useAuthStore((s) => s.loading);
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -35,7 +36,7 @@ export default function IdProofEditPage() {
 
   useEffect(() => {
     async function load() {
-      if (!profile) return;
+      if (!profile) { if (!authLoading) setLoading(false); return; }
       const { data } = await supabase
         .from("id_proofs")
         .select("*")
@@ -53,7 +54,7 @@ export default function IdProofEditPage() {
       setLoading(false);
     }
     load();
-  }, [profile, supabase]);
+  }, [profile, authLoading, supabase]);
 
   async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];

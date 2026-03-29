@@ -58,6 +58,7 @@ function ListsContent() {
   const router = useRouter();
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
+  const authLoading = useAuthStore((s) => s.loading);
 
   const activeSection = (searchParams.get("section") as ListSection) || "shortlisted";
   const [items, setItems] = useState<ListProfile[]>([]);
@@ -74,7 +75,7 @@ function ListsContent() {
   const [unignoreTarget, setUnignoreTarget] = useState<string | null>(null);
 
   const loadCounts = useCallback(async () => {
-    if (!profile) return;
+    if (!profile) { if (!authLoading) setLoading(false); return; }
     const [s, b, i] = await Promise.all([
       supabase.from("shortlists").select("*", { count: "exact", head: true }).eq("profile_id", profile.id),
       supabase.from("blocked_profiles").select("*", { count: "exact", head: true }).eq("profile_id", profile.id),
@@ -85,10 +86,10 @@ function ListsContent() {
       blocked: b.count ?? 0,
       ignored: i.count ?? 0,
     });
-  }, [profile, supabase]);
+  }, [profile, authLoading, supabase]);
 
   const loadItems = useCallback(async () => {
-    if (!profile) return;
+    if (!profile) { if (!authLoading) setLoading(false); return; }
     setLoading(true);
 
     const table = activeSection === "shortlisted" ? "shortlists" : activeSection === "blocked" ? "blocked_profiles" : "ignored_profiles";
@@ -133,7 +134,7 @@ function ListsContent() {
       setItems([]);
     }
     setLoading(false);
-  }, [profile, activeSection, supabase]);
+  }, [profile, authLoading, activeSection, supabase]);
 
   useEffect(() => { loadCounts(); }, [loadCounts]);
   useEffect(() => { loadItems(); }, [loadItems]);

@@ -13,6 +13,7 @@ interface SectionData {
 export default function PrintSelfProfilePage() {
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
+  const authLoading = useAuthStore((s) => s.loading);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<{
     profile: Record<string, unknown>;
@@ -29,7 +30,7 @@ export default function PrintSelfProfilePage() {
   } | null>(null);
 
   const loadData = useCallback(async () => {
-    if (!profile) return;
+    if (!profile) { if (!authLoading) setLoading(false); return; }
 
     const [
       { data: profileData },
@@ -71,7 +72,7 @@ export default function PrintSelfProfilePage() {
       partner: partnerData ?? {},
     });
     setLoading(false);
-  }, [profile, supabase]);
+  }, [profile, authLoading, supabase]);
 
   useEffect(() => {
     loadData();

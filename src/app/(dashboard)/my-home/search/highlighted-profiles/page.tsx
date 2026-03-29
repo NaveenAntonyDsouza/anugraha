@@ -11,12 +11,13 @@ import { ProfileCard, type ProfileCardData } from "@/components/dashboard/profil
 export default function HighlightedProfilesPage() {
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
+  const authLoading = useAuthStore((s) => s.loading);
   const [profiles, setProfiles] = useState<ProfileCardData[]>([]);
   const [loading, setLoading] = useState(true);
   const [genderFilter, setGenderFilter] = useState<"Bride" | "Groom">("Bride");
 
   const load = useCallback(async () => {
-    if (!profile) return;
+    if (!profile) { if (!authLoading) setLoading(false); return; }
     setLoading(true);
 
     const targetGender = genderFilter === "Bride" ? "Female" : "Male";
@@ -70,7 +71,7 @@ export default function HighlightedProfilesPage() {
 
     setProfiles(mapped);
     setLoading(false);
-  }, [profile, genderFilter, supabase]);
+  }, [profile, authLoading, genderFilter, supabase]);
 
   useEffect(() => { load(); }, [load]);
 
