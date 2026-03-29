@@ -17,7 +17,7 @@ interface IdProof {
 export default function IdProofViewPage() {
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
-  const authLoading = useAuthStore((s) => s.loading);
+  const authLoading = useAuthStore((s) => s.isLoading);
   const [loading, setLoading] = useState(true);
   const [idProof, setIdProof] = useState<IdProof | null>(null);
 

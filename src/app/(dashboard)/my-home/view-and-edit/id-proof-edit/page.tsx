@@ -22,7 +22,7 @@ export default function IdProofEditPage() {
   const router = useRouter();
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
-  const authLoading = useAuthStore((s) => s.loading);
+  const authLoading = useAuthStore((s) => s.isLoading);
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);

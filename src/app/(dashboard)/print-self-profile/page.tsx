@@ -13,7 +13,7 @@ interface SectionData {
 export default function PrintSelfProfilePage() {
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
-  const authLoading = useAuthStore((s) => s.loading);
+  const authLoading = useAuthStore((s) => s.isLoading);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<{
     profile: Record<string, unknown>;

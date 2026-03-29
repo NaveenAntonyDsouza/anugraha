@@ -58,7 +58,7 @@ function ListsContent() {
   const router = useRouter();
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
-  const authLoading = useAuthStore((s) => s.loading);
+  const authLoading = useAuthStore((s) => s.isLoading);
 
   const activeSection = (searchParams.get("section") as ListSection) || "shortlisted";
   const [items, setItems] = useState<ListProfile[]>([]);

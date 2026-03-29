@@ -9,7 +9,7 @@ import { ProfileCard, type ProfileCardData } from "@/components/dashboard/profil
 export default function NewlyJoinedPage() {
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
-  const authLoading = useAuthStore((s) => s.loading);
+  const authLoading = useAuthStore((s) => s.isLoading);
   const [profiles, setProfiles] = useState<ProfileCardData[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);

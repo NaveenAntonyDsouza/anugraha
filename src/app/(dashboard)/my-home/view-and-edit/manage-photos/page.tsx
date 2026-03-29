@@ -38,7 +38,7 @@ export default function ManagePhotosPage() {
 
   const [activeTab, setActiveTab] = useState<"photos" | "archived">("photos");
 
-  const authLoading = useAuthStore((s) => s.loading);
+  const authLoading = useAuthStore((s) => s.isLoading);
 
   const loadPhotos = useCallback(async () => {
     if (!profile) {

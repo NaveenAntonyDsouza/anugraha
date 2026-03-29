@@ -35,7 +35,7 @@ function ViewsContent() {
   const router = useRouter();
   const supabase = createClient();
   const profile = useAuthStore((s) => s.profile);
-  const authLoading = useAuthStore((s) => s.loading);
+  const authLoading = useAuthStore((s) => s.isLoading);
   const user = useAuthStore((s) => s.user);
 
   const activeTab = (searchParams.get("tab") as ViewTab) || "profiles-viewed-by-others";
