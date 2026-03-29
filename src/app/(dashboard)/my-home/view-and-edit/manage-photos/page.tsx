@@ -1,10 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
-import { useAuthStore } from "@/stores/auth-store";
 import {
   PhotoUploadGrid,
   ArchivedPhotosGrid,
@@ -18,7 +17,6 @@ type PrivacyLevel =
 
 export default function ManagePhotosPage() {
   const supabase = createClient();
-  const profile = useAuthStore((s) => s.profile);
 
   const [loading, setLoading] = useState(true);
   const [profileId, setProfileId] = useState<string | null>(null);
@@ -38,52 +36,60 @@ export default function ManagePhotosPage() {
 
   const [activeTab, setActiveTab] = useState<"photos" | "archived">("photos");
 
-  const authLoading = useAuthStore((s) => s.isLoading);
-
-  const loadPhotos = useCallback(async () => {
-    if (!profile) {
-      if (!authLoading) setLoading(false);
-      return;
-    }
-    setProfileId(profile.id);
-
-    const [photosRes, archivedRes, privacyRes] = await Promise.all([
-      supabase
-        .from("profile_photos")
-        .select("*")
-        .eq("profile_id", profile.id)
-        .eq("is_visible", true)
-        .order("display_order"),
-      supabase
-        .from("profile_photos")
-        .select("*")
-        .eq("profile_id", profile.id)
-        .eq("is_visible", false),
-      supabase
-        .from("photo_privacy_settings")
-        .select("*")
-        .eq("profile_id", profile.id)
-        .single(),
-    ]);
-
-    if (photosRes.data) {
-      setProfilePhotos(photosRes.data.filter((p) => p.photo_type === "profile"));
-      setAlbumPhotos(photosRes.data.filter((p) => p.photo_type === "album"));
-      setFamilyPhotos(photosRes.data.filter((p) => p.photo_type === "family"));
-    }
-    if (archivedRes.data) setArchivedPhotos(archivedRes.data);
-    if (privacyRes.data) {
-      setPrivacyLevel(privacyRes.data.privacy_level ?? "Visible To All");
-      setShowProfilePhoto(privacyRes.data.show_profile_photo ?? true);
-      setShowAlbumPhotos(privacyRes.data.show_album_photos ?? true);
-      setShowFamilyPhotos(privacyRes.data.show_family_photos ?? true);
-    }
-    setLoading(false);
-  }, [profile, authLoading, supabase]);
-
   useEffect(() => {
+    async function loadPhotos() {
+      try {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (!user) { setLoading(false); return; }
+
+        const { data: prof } = await supabase
+          .from("profiles")
+          .select("id")
+          .eq("user_id", user.id)
+          .single();
+
+        if (!prof) { setLoading(false); return; }
+        setProfileId(prof.id);
+
+        const [photosRes, archivedRes, privacyRes] = await Promise.all([
+          supabase
+            .from("profile_photos")
+            .select("*")
+            .eq("profile_id", prof.id)
+            .eq("is_visible", true)
+            .order("display_order"),
+          supabase
+            .from("profile_photos")
+            .select("*")
+            .eq("profile_id", prof.id)
+            .eq("is_visible", false),
+          supabase
+            .from("photo_privacy_settings")
+            .select("*")
+            .eq("profile_id", prof.id)
+            .single(),
+        ]);
+
+        if (photosRes.data) {
+          setProfilePhotos(photosRes.data.filter((p) => p.photo_type === "profile"));
+          setAlbumPhotos(photosRes.data.filter((p) => p.photo_type === "album"));
+          setFamilyPhotos(photosRes.data.filter((p) => p.photo_type === "family"));
+        }
+        if (archivedRes.data) setArchivedPhotos(archivedRes.data);
+        if (privacyRes.data) {
+          setPrivacyLevel(privacyRes.data.privacy_level ?? "Visible To All");
+          setShowProfilePhoto(privacyRes.data.show_profile_photo ?? true);
+          setShowAlbumPhotos(privacyRes.data.show_album_photos ?? true);
+          setShowFamilyPhotos(privacyRes.data.show_family_photos ?? true);
+        }
+      } catch {
+        toast.error("Failed to load photos");
+      } finally {
+        setLoading(false);
+      }
+    }
     loadPhotos();
-  }, [loadPhotos]);
+  }, [supabase]);
 
   function handleUploadComplete(
     photo: ProfilePhoto,
