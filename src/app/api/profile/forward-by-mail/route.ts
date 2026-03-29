@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { error } = await resend.emails.send({
-      from: "Anugraha Matrimony <noreply@anugrahamatrimony.com>",
+      from: "Anugraha Matrimony <noreply@mail.anugrahamatrimony.com>",
       to: recipientEmail.trim(),
       subject: `${senderName} shared a profile with you on Anugraha Matrimony`,
       react: ForwardProfileEmail({
