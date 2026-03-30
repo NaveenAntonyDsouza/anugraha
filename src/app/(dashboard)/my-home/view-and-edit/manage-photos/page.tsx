@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
+import { useAuthStore } from "@/stores/auth-store";
 import {
   PhotoUploadGrid,
   ArchivedPhotosGrid,
@@ -17,6 +18,8 @@ type PrivacyLevel =
 
 export default function ManagePhotosPage() {
   const supabase = createClient();
+  const profile = useAuthStore((s) => s.profile);
+  const authLoading = useAuthStore((s) => s.isLoading);
 
   const [loading, setLoading] = useState(true);
   const [profileId, setProfileId] = useState<string | null>(null);
@@ -37,36 +40,29 @@ export default function ManagePhotosPage() {
   const [activeTab, setActiveTab] = useState<"photos" | "archived">("photos");
 
   useEffect(() => {
+    if (authLoading) return;
+    if (!profile) { setLoading(false); return; }
+
     async function loadPhotos() {
       try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (!user) { setLoading(false); return; }
-
-        const { data: prof } = await supabase
-          .from("profiles")
-          .select("id")
-          .eq("user_id", user.id)
-          .single();
-
-        if (!prof) { setLoading(false); return; }
-        setProfileId(prof.id);
+        setProfileId(profile!.id);
 
         const [photosRes, archivedRes, privacyRes] = await Promise.all([
           supabase
             .from("profile_photos")
             .select("*")
-            .eq("profile_id", prof.id)
+            .eq("profile_id", profile!.id)
             .eq("is_visible", true)
             .order("display_order"),
           supabase
             .from("profile_photos")
             .select("*")
-            .eq("profile_id", prof.id)
+            .eq("profile_id", profile!.id)
             .eq("is_visible", false),
           supabase
             .from("photo_privacy_settings")
             .select("*")
-            .eq("profile_id", prof.id)
+            .eq("profile_id", profile!.id)
             .single(),
         ]);
 
@@ -89,7 +85,8 @@ export default function ManagePhotosPage() {
       }
     }
     loadPhotos();
-  }, [supabase]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile, authLoading]);
 
   function handleUploadComplete(
     photo: ProfilePhoto,

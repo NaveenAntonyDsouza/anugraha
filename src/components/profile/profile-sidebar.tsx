@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
+import { useAuthStore } from "@/stores/auth-store";
 import { ProfileCompletionBar } from "@/components/onboarding/profile-completion-bar";
 import {
   ForwardProfileDropdown,
@@ -33,44 +34,45 @@ interface ProfileData {
 export function ProfileSidebar() {
   const pathname = usePathname();
   const supabase = createClient();
+  const authProfile = useAuthStore((s: any) => s.profile);
+  const authLoading = useAuthStore((s: any) => s.isLoading);
   const [profile, setProfile] = useState<ProfileData | null>(null);
   const [mobileVerified, setMobileVerified] = useState(true);
   const [showMailModal, setShowMailModal] = useState(false);
 
   useEffect(() => {
+    if (authLoading || !authProfile) return;
+
     async function load() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-      if (!user) return;
-
-      const { data } = await supabase
-        .from("profiles")
-        .select("id, full_name, anugraha_id, profile_completion_pct, is_verified, id_proof_verified")
-        .eq("user_id", user.id)
-        .single();
-
-      if (data) {
-        // Get profile photo
-        const { data: photo } = await supabase
+      const [photoRes, profileRes] = await Promise.all([
+        supabase
           .from("profile_photos")
           .select("photo_url")
-          .eq("profile_id", data.id)
+          .eq("profile_id", authProfile.id)
           .eq("is_primary", true)
           .eq("is_visible", true)
-          .single();
+          .single(),
+        supabase
+          .from("profiles")
+          .select("is_verified, id_proof_verified")
+          .eq("id", authProfile.id)
+          .single(),
+      ]);
 
-        setProfile({
-          ...data,
-          photo_url: photo?.photo_url || null,
-        });
-      }
-
-      // Mobile is considered verified since they passed OTP during registration
+      setProfile({
+        id: authProfile.id,
+        full_name: authProfile.full_name,
+        anugraha_id: authProfile.anugraha_id,
+        profile_completion_pct: authProfile.profile_completion_pct,
+        is_verified: profileRes.data?.is_verified ?? false,
+        id_proof_verified: profileRes.data?.id_proof_verified ?? false,
+        photo_url: photoRes.data?.photo_url || null,
+      });
       setMobileVerified(true);
     }
     load();
-  }, [supabase]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [authProfile, authLoading]);
 
   if (!profile) return null;
 
